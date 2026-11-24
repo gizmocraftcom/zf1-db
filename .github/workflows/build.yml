@@ -32,17 +32,17 @@ jobs:
       fail-fast: false
       matrix:
         operating-system: [ubuntu-latest]
-        php-versions: ["8.1", "8.2", "8.3", "8.4", "8.5"]
+        php-versions: ["8.5", "8.6"]
         composer-args: ["", "--prefer-lowest"]
     runs-on: ${{ matrix.operating-system }}
     steps:
       - name: Checkout
-        uses: actions/checkout@v6
+        uses: actions/checkout@v7
       - name: Get branch names.
         id: branch-names
         uses: tj-actions/branch-names@5250492686b253f06fa55861556d1027b067aeb5 # v9
       - name: Setup PHP
-        uses: shivammathur/setup-php@2.36.0
+        uses: shivammathur/setup-php@2.40.0
         with:
           php-version: ${{ matrix.php-versions }}
           extensions: mbstring
@@ -54,7 +54,7 @@ jobs:
         id: composer-cache
         run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
       - name: Cache dependencies
-        uses: actions/cache@v5
+        uses: actions/cache@v6
         with:
           path: ${{ steps.composer-cache.outputs.dir }}
           key: php${{ matrix.php-versions }}-composer-${{ matrix.composer-args }}-${{ hashFiles('**/composer.json') }}
@@ -73,7 +73,7 @@ jobs:
       - name: Test
         run: composer test-with-coverage
       - name: Upload Coverage
-        uses: codecov/codecov-action@v5
+        uses: codecov/codecov-action@v7
         with:
           files: ./clover.xml
           verbose: true
