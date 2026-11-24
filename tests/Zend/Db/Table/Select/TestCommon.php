@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -213,9 +215,7 @@ abstract class Zend_Db_Table_Select_TestCommon extends Zend_Db_Select_TestCommon
         $this->assertSame($table, $select->getTable());
     }
 
-    /**
-     * @group ZF-2798
-     */
+    #[Group('ZF-2798')]
     public function testTableWillReturnSelectObjectWithFromPart()
     {
         $table   = $this->_getSelectTable('accounts');
@@ -244,9 +244,7 @@ abstract class Zend_Db_Table_Select_TestCommon extends Zend_Db_Select_TestCommon
         $this->assertStringContainsString('tableB', $select4Text);
     }
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testAssembleDbTableUnionSelect()
     {
         $table   = $this->_getSelectTable('accounts');
@@ -259,8 +257,8 @@ abstract class Zend_Db_Table_Select_TestCommon extends Zend_Db_Select_TestCommon
 
     /**
      * Test the Adapter's fetchRow() method with a select with offset
-     * @group ZF-8944
      */
+    #[Group('ZF-8944')]
     public function testAdapterFetchRowWithOffset()
     {
         $table      = $this->_getSelectTable('products');

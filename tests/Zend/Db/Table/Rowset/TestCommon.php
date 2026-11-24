@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,6 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Table
- * @group      Zend_Db_Table_Rowset
  */
 abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
 {
@@ -271,10 +269,8 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertFalse($connected);
     }
 
-    /**
-     * @group ZF-9213
-     * @group ZF-10173
-     */
+    #[Group('ZF-9213')]
+    #[Group('ZF-10173')]
     public function testTableRowsetIndexesValid()
     {
         $rowset = $this->_table['bugs']->fetchAll();
@@ -300,9 +296,7 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
 
 
 
-    /**
-     * @group ZF-8486
-     */
+    #[Group('ZF-8486')]
     public function testTableRowsetIteratesAndWillReturnLastRowAfter()
     {
         $table  = $this->_table['bugs'];
@@ -320,9 +314,7 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertSame($lastRow, $seekLastRow);
     }
 
-    /**
-     * @group ZF-8486
-     */
+    #[Group('ZF-8486')]
     public function testTableRowsetThrowsExceptionOnInvalidSeek()
     {
         $table  = $this->_table['bugs'];
@@ -334,9 +326,7 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
         $rowset->seek(4);
     }
 
-    /**
-     * @group ZF-8486
-     */
+    #[Group('ZF-8486')]
     public function testTableRowsetThrowsExceptionOnInvalidGetRow()
     {
         $table  = $this->_table['bugs'];
@@ -348,9 +338,7 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
         $rowset->getRow(4);
     }
 
-    /**
-     * @group GH-172
-     */
+    #[Group('GH-172')]
     public function testTableRowsetContainsDisconnectedRowObjectsWhenDeserialized()
     {
         $table        = $this->_table['bugs'];
@@ -375,9 +363,7 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertNull($row->getTable());
     }
 
-    /**
-     * @group GH-172
-     */
+    #[Group('GH-172')]
     public function testConnectedRowObjectsAreCreatedByRowsetAfterSetTableIsCalled()
     {
         $table  = $this->_table['bugs'];
@@ -396,9 +382,7 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertTrue($row->getTable() instanceof Zend_Db_Table_Abstract);
     }
 
-    /**
-      * @group GH-172
-      */
+    #[Group('GH-172')]
     public function testFixForRowsetContainsDisconnectedRowObjectsWhenDeserializedDoesNotBreakPaginator()
     {
         if (!class_exists('Zend_Paginator')) {
@@ -422,9 +406,9 @@ abstract class Zend_Db_Table_Rowset_TestCommon extends Zend_Db_Table_TestSetup
     }
 
     /**
-      * @group GH-172
       * @see https://github.com/zendframework/zf1/commit/d418b73b53964c3bd84a6624075008106e7d5962#commitcomment-4438005
       */
+    #[Group('GH-172')]
     public function testFixForRowsetContainsDisconnectedRowObjectsWhenDeserializedDoesNotBreakTableJoin()
     {
         $table      = $this->_table['bugs'];

@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -37,9 +38,9 @@ abstract class Zend_Db_Adapter_Pdo_TestCommon extends Zend_Db_Adapter_TestCommon
 
     /**
      * Ensures that exec() throws an exception when given a bogus query
-     * @group ZF-6185
      * @return void
      */
+    #[Group('ZF-6185')]
     public function testAdapterExecBogus()
     {
         try {
@@ -55,9 +56,9 @@ abstract class Zend_Db_Adapter_Pdo_TestCommon extends Zend_Db_Adapter_TestCommon
 
     /**
      * Ensures that exec() throws an exception when given a bogus table
-     * @group ZF-6185
      * @return void
      */
+    #[Group('ZF-6185')]
     public function testAdapterExecBogusTable()
     {
         try {
@@ -73,9 +74,9 @@ abstract class Zend_Db_Adapter_Pdo_TestCommon extends Zend_Db_Adapter_TestCommon
 
     /**
      * Ensures that exec() provides expected behavior when modifying no rows
-     * @group ZF-6185
      * @return void
      */
+    #[Group('ZF-6185')]
     public function testAdapterExecModifiedNone()
     {
         $affected = $this->_db->exec('DELETE FROM ' . $this->_db->quoteIdentifier('zfbugs') . ' WHERE 1 = -1');

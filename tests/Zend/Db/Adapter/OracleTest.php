@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Adapter')]
 class Zend_Db_Adapter_OracleTest extends Zend_Db_Adapter_TestCommon
 {
     protected $_numericDataTypes = array(
@@ -277,9 +278,7 @@ class Zend_Db_Adapter_OracleTest extends Zend_Db_Adapter_TestCommon
         $this->assertEquals(2, $result->$col_name);
     }
 
-    /**
-     * @group ZF-10829
-     */
+    #[Group('ZF-10829')]
     public function testAdapterGetPersistentConnection()
     {
         $params               = $this->_util->getParams();
@@ -385,9 +384,7 @@ class Zend_Db_Adapter_OracleTest extends Zend_Db_Adapter_TestCommon
         $this->assertEquals('"foo" "bar"', $value);
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterLobAsString()
     {
         $this->assertFalse($this->_db->getLobAsString());
@@ -395,9 +392,7 @@ class Zend_Db_Adapter_OracleTest extends Zend_Db_Adapter_TestCommon
         $this->assertTrue($this->_db->getLobAsString());
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterLobAsStringFromDriverOptions()
     {
         $params                   = $this->_util->getParams();
@@ -408,9 +403,7 @@ class Zend_Db_Adapter_OracleTest extends Zend_Db_Adapter_TestCommon
         $this->assertTrue($db->getLobAsString());
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchRow()
     {
         $documents   = $this->_db->quoteIdentifier('zfdocuments');
@@ -425,18 +418,14 @@ class Zend_Db_Adapter_OracleTest extends Zend_Db_Adapter_TestCommon
         $this->assertEquals($expected, $lob->read($lob->size()));
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchRowLobAsString()
     {
         $this->_db->setLobAsString(true);
         parent::testAdapterReadClobFetchRow();
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchAssoc()
     {
         $documents   = $this->_db->quoteIdentifier('zfdocuments');
@@ -451,18 +440,14 @@ class Zend_Db_Adapter_OracleTest extends Zend_Db_Adapter_TestCommon
         $this->assertEquals($expected, $lob->read($lob->size()));
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchAssocLobAsString()
     {
         $this->_db->setLobAsString(true);
         parent::testAdapterReadClobFetchAssoc();
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchOne()
     {
         $documents     = $this->_db->quoteIdentifier('zfdocuments');
@@ -478,9 +463,7 @@ class Zend_Db_Adapter_OracleTest extends Zend_Db_Adapter_TestCommon
         $this->assertEquals($expected, $lob->read($lob->size()));
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchOneLobAsString()
     {
         $this->_db->setLobAsString(true);
@@ -522,9 +505,7 @@ class Zend_Db_Adapter_OracleTest extends Zend_Db_Adapter_TestCommon
         $this->_testAdapterAlternateStatement('Test_OracleStatement');
     }
 
-    /**
-     * @group ZF-8399
-     */
+    #[Group('ZF-8399')]
     public function testLongQueryWithTextField()
     {
         $this->markTestSkipped($this->getDriver() . ' does not have TEXT field type');

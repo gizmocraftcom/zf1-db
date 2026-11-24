@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Adapter')]
 class Zend_Db_Adapter_Pdo_MssqlTest extends Zend_Db_Adapter_Pdo_TestCommon
 {
     protected $_numericDataTypes = array(
@@ -283,9 +284,7 @@ class Zend_Db_Adapter_Pdo_MssqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         );
     }
 
-    /**
-     * @group ZF-4099
-     */
+    #[Group('ZF-4099')]
     public function testAdapterLimitWorksWithOrderByClause()
     {
         // more values
@@ -309,9 +308,7 @@ class Zend_Db_Adapter_Pdo_MssqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals($expectedProducts, $products);
     }
 
-    /**
-     * @group ZF-4251
-     */
+    #[Group('ZF-4251')]
     public function testAdapterLimitWorksWithDistinctClause()
     {
         $this->_db->insert('zfproducts', array('product_name' => 'Unix'));
@@ -331,9 +328,7 @@ class Zend_Db_Adapter_Pdo_MssqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals($expectedProducts, $products);
     }
 
-    /**
-     * @group ZF-5823
-     */
+    #[Group('ZF-5823')]
     public function testAdapterLimitWithoutOffsetProducesConciseSql()
     {
         $sql = 'SELECT * FROM foo ORDER BY bar DESC';
@@ -343,9 +338,7 @@ class Zend_Db_Adapter_Pdo_MssqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals('SELECT DISTINCT TOP 3 * FROM foo ORDER BY bar DESC', $this->_db->limit($sql, 3));
     }
 
-    /**
-     * @group ZF-7629
-     */
+    #[Group('ZF-7629')]
     public function testAdapterDescribeTableWithSchemaName()
     {
         $productsTableInfo = $this->_db->describeTable('zfproducts', 'dbo');

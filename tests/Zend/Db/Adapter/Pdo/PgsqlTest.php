@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Adapter')]
 class Zend_Db_Adapter_Pdo_PgsqlTest extends Zend_Db_Adapter_Pdo_TestCommon
 {
     protected $_numericDataTypes = array(
@@ -190,9 +191,7 @@ class Zend_Db_Adapter_Pdo_PgsqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         return 'Pdo_Pgsql';
     }
 
-    /**
-     * @group ZF-3972
-     */
+    #[Group('ZF-3972')]
     public function testAdapterCharacterVarying()
     {
         $this->_util->createTable(
@@ -206,9 +205,7 @@ class Zend_Db_Adapter_Pdo_PgsqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals('A', $description['pg_info']['DEFAULT']);
     }
 
-    /**
-     * @group ZF-7640
-     */
+    #[Group('ZF-7640')]
     public function testAdapterBpchar()
     {
         $this->_util->createTable(
@@ -220,10 +217,8 @@ class Zend_Db_Adapter_Pdo_PgsqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals('Default', $description['pg_name']['DEFAULT']);
     }
 
-    /**
-     * @group ZF-10160
-     * @group ZF-10257
-     */
+    #[Group('ZF-10160')]
+    #[Group('ZF-10257')]
     public function testQuoteIdentifiersInSequence()
     {
         $this->_util->createSequence('camelCase_id_seq');

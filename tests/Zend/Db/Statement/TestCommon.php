@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,8 +28,6 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Statement
  */
 abstract class Zend_Db_Statement_TestCommon extends Zend_Db_TestSetup
 {
@@ -900,9 +899,7 @@ abstract class Zend_Db_Statement_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals($value, $stmt->getAttribute(1234), "Expected '$value' #2");
     }
 
-    /**
-     * @group ZF-7706
-     */
+    #[Group('ZF-7706')]
     public function testStatementCanReturnDriverStatement()
     {
         $products  = $this->_db->quoteIdentifier('zfproducts');

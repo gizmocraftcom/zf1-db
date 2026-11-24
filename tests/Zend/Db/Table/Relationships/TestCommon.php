@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,6 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Table
- * @group      Zend_Db_Table_Relationships
  */
 abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_TestSetup
 {
@@ -1181,9 +1179,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
         $this->assertEquals(1, $destRows->count());
     }
 
-    /**
-     * @group ZF-3486
-     */
+    #[Group('ZF-3486')]
     public function testTableRelationshipCanFindParentViaConcreteInstantiation()
     {
         Zend_Db_Table::setDefaultAdapter($this->_db);
@@ -1199,9 +1195,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
         Zend_Db_Table::setDefaultAdapter();
     }
 
-    /**
-     * @group ZF-3486
-     */
+    #[Group('ZF-3486')]
     public function testTableRelationshipCanFindDependentRowsetViaConcreteInstantiation()
     {
         Zend_Db_Table::setDefaultAdapter($this->_db);
@@ -1223,9 +1217,7 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
         Zend_Db_Table::setDefaultAdapter();
     }
 
-    /**
-     * @group ZF-3486
-     */
+    #[Group('ZF-3486')]
     public function testTableRelationshipCanFindManyToManyRowsetViaConcreteInstantiation()
     {
         Zend_Db_Table::setDefaultAdapter($this->_db);
@@ -1340,8 +1332,8 @@ abstract class Zend_Db_Table_Relationships_TestCommon extends Zend_Db_Table_Test
      * Ensure that the related table returned from the ManyToManyRowset only contains
      * the proper columns for the table.
      *
-     * @group ZF-3709
      */
+    #[Group('ZF-3709')]
     public function testTableRelationshipReturnsOnlyTheColumnsInTargetTable()
     {
         $table                       = $this->_table['bugs'];

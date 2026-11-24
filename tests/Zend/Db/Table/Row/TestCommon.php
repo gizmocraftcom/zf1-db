@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
+
 require_once __DIR__ . '/../_files/My/ZendDbTable/TableBugs.php';
 require_once __DIR__ . '/../_files/My/ZendDbTable/Row/TestTableRow.php';
 require_once __DIR__ . '/../_files/My/ZendDbTable/Row/TestStandaloneRow.php';
@@ -32,9 +34,6 @@ require_once __DIR__ . '/../_files/My/ZendDbTable/TableBugsProducts.php';
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Table
- * @group      Zend_Db_Table_Row
  */
 abstract class Zend_Db_Table_Row_TestCommon extends Zend_Db_Table_TestSetup
 {
@@ -343,9 +342,7 @@ abstract class Zend_Db_Table_Row_TestCommon extends Zend_Db_Table_TestSetup
         }
     }
 
-    /**
-     * @group ZF-8902
-     */
+    #[Group('ZF-8902')]
     public function testTableRowOffsetUnset()
     {
         $table           = $this->_table['bugs'];
@@ -974,9 +971,7 @@ abstract class Zend_Db_Table_Row_TestCommon extends Zend_Db_Table_TestSetup
         }
     }
 
-    /**
-     * @group ZF-9836
-     */
+    #[Group('ZF-9836')]
     public function testTableRowIsIterable()
     {
         $table = $this->_table['bugs'];

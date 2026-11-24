@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Adapter')]
 class Zend_Db_Adapter_Db2Test extends Zend_Db_Adapter_TestCommon
 {
     protected $_numericDataTypes = array(
@@ -315,8 +316,8 @@ class Zend_Db_Adapter_Db2Test extends Zend_Db_Adapter_TestCommon
      * its primary focus is to reduce the query time, not the result
      * set.
      *
-     * @group ZF-5169
      */
+    #[Group('ZF-5169')]
     public function testAdapterSchemaOptionInListTables()
     {
         $params = $this->_util->getParams();
@@ -347,9 +348,7 @@ class Zend_Db_Adapter_Db2Test extends Zend_Db_Adapter_TestCommon
         $this->assertTrue(($tableCountNoSchema > $tableCountSchema), 'Table count with schema provided should be less than without.');
     }
 
-    /**
-     * @group ZF-8399
-     */
+    #[Group('ZF-8399')]
     public function testLongQueryWithTextField()
     {
         $this->markTestSkipped($this->getDriver() . ' does not have TEXT field type');

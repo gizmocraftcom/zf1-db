@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -80,8 +81,8 @@ class Zend_Db_TestUtil_Mysqli extends Zend_Db_TestUtil_Common
 
     /**
      * Test that describeTable() returns correct float type
-     * @group ZF-3624
      */
+    #[Group('ZF-3624')]
     protected function _getColumnsPrice()
     {
         return array(
@@ -95,8 +96,8 @@ class Zend_Db_TestUtil_Mysqli extends Zend_Db_TestUtil_Common
 
     /**
      * Test that describeTable() returns correct float type
-     * @group ZF-3624
      */
+    #[Group('ZF-3624')]
     protected function _getDataPrice()
     {
         return array(

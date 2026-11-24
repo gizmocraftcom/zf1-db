@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,10 +28,10 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Table
- * @group      Zend_Db_Table_Select
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Table')]
+#[Group('Zend_Db_Table_Select')]
 class Zend_Db_Table_Select_Db2Test extends Zend_Db_Table_Select_TestCommon
 {
 
@@ -54,8 +55,8 @@ class Zend_Db_Table_Select_Db2Test extends Zend_Db_Table_Select_TestCommon
 
     /**
      * ZF-2017: Test bind use of the Zend_Db_Select class.
-     * @group ZF-2017
      */
+    #[Group('ZF-2017')]
     public function testSelectQueryWithBinds()
     {
         $this->markTestSkipped($this->getDriver() . ' does not support named parameters');

@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Adapter')]
 class Zend_Db_Adapter_MysqliTest extends Zend_Db_Adapter_TestCommon
 {
     protected $_numericDataTypes = array(
@@ -215,9 +216,9 @@ class Zend_Db_Adapter_MysqliTest extends Zend_Db_Adapter_TestCommon
 
     /**
      * test that describeTable() returns correct types
-     * @group ZF-3624
      *
      */
+    #[Group('ZF-3624')]
     public function testAdapterDescribeTableAttributeColumnFloat()
     {
         $desc = $this->_db->describeTable('zfprice');
@@ -229,10 +230,10 @@ class Zend_Db_Adapter_MysqliTest extends Zend_Db_Adapter_TestCommon
      * Ensures that the PDO Buffered Query does not throw the error
      * 2014 General error
      *
-     * @group  ZF-2101
      * @link   http://framework.zend.com/issues/browse/ZF-2101
      * @return void
      */
+    #[Group('ZF-2101')]
     public function testAdapterToEnsurePdoBufferedQueryThrowsNoError()
     {
         $params = $this->_util->getParams();

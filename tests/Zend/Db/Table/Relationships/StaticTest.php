@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
+
 /**
  * @see Zend_Db_Table_Row_TestMockRow
  */
@@ -31,10 +33,10 @@ require_once dirname(__FILE__) . '/../_files/My/ZendDbTable/Row/TestMockRow.php'
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Table
- * @group      Zend_Db_Table_Relationships
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Table')]
+#[Group('Zend_Db_Table_Relationships')]
 class Zend_Db_Table_Relationships_StaticTest extends PHPUnit\Framework\TestCase
 {
     public function testTableRelationshipsFindDependentMagic()

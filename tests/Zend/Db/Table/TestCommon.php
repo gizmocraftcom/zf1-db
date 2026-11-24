@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -31,9 +33,7 @@
 abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
 {
 
-    /**
-     * @doesNotPerformAssertions
-     */
+    #[DoesNotPerformAssertions]
     public function testTableConstructor()
     {
         $bugs = $this->_table['bugs'];
@@ -86,18 +86,14 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertTrue($bugs->isIdentity('bug_id'));
     }
 
-    /**
-     * @group ZF-2510
-     */
+    #[Group('ZF-2510')]
     public function testMetadataCacheInClassFlagShouldBeEnabledByDefault()
     {
         $bugs = $this->_table['bugs'];
         $this->assertTrue($bugs->metadataCacheInClass());
     }
 
-    /**
-     * @group ZF-2510
-     */
+    #[Group('ZF-2510')]
     public function testMetadataCacheInClassFlagShouldBeMutable()
     {
         $bugs = $this->_table['bugs'];
@@ -665,9 +661,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         }
     }
 
-    /**
-     * @group ZF-3349
-     */
+    #[Group('ZF-3349')]
     public function testTableFindMultipleRowsWithKeys()
     {
         $table  = $this->_table['products'];
@@ -679,10 +673,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertCount(3, $rowset);
     }
 
-    /**
-     *
-     * @group ZF-5775
-     */
+    #[Group('ZF-5775')]
     public function testTableFindWithEmptyArray()
     {
         $table  = $this->_table['products'];
@@ -713,9 +704,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertEquals(5, $lastInsertId);
     }
 
-    /**
-     * @group ZF-3837
-     */
+    #[Group('ZF-3837')]
     public function testTableInsertWhenAutoIncrementFieldIsAnEmptyStringShouldProduceNewAutoIncrementValue()
     {
         $table = $this->_table['bugs'];
@@ -845,8 +834,8 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
 
     /**
      * See ZF-1739 in our issue tracker.
-     * @group ZF-1739
      */
+    #[Group('ZF-1739')]
     public function testTableInsertWithHighMemoryUsage()
     {
         $this->markTestSkipped('Very slow test inserts thousands of rows');
@@ -876,9 +865,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertThat($mem_delta, $this->lessThan(513));
     }
 
-    /**
-     * @group ZF-2953
-     */
+    #[Group('ZF-2953')]
     public function testTableInsertWithEmptyValueAsPrimaryKey()
     {
         $table = $this->_table['bugs'];
@@ -1088,11 +1075,9 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertEquals('New bug', $row->bug_description);
     }
 
-    /**
-     * @group ZF-8944
-     * @group ZF-10598
-     * @group ZF-11253
-     */
+    #[Group('ZF-8944')]
+    #[Group('ZF-10598')]
+    #[Group('ZF-11253')]
     public function testTableFetchRowOffset()
     {
         $reported_by = $this->_db->quoteIdentifier('reported_by', true);
@@ -1107,11 +1092,9 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertEquals(2, $row->$bug_id);
     }
 
-    /**
-     * @group ZF-8944
-     * @group ZF-10598
-     * @group ZF-11253
-     */
+    #[Group('ZF-8944')]
+    #[Group('ZF-10598')]
+    #[Group('ZF-11253')]
     public function testTableFetchRowOffsetSelect()
     {
         $reported_by = $this->_db->quoteIdentifier('reported_by', true);
@@ -1580,9 +1563,9 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
      * Ensures that table metadata caching can be persistent in the object even
      * after a flushed cache, if the setMetadataCacheInClass property is true.
      *
-     * @group  ZF-2510
      * @return void
      */
+    #[Group('ZF-2510')]
     public function testTableMetadataCacheInClass()
     {
         $cache = $this->_getCache();
@@ -1743,9 +1726,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertCount(0, $rows);
     }
 
-    /**
-     * @group ZF-1103
-     */
+    #[Group('ZF-1103')]
     public function testTableCascadeRecurseDelete()
     {
         $tblRecursive = $this->_getTable('My_ZendDbTable_TableCascadeRecursive');
@@ -1776,9 +1757,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertTrue($tblRecursive->find(6)->current() instanceof Zend_Db_Table_Row);
     }
 
-    /**
-     * @group ZF-11810
-     */
+    #[Group('ZF-11810')]
     public function testTableCascadeRecurseDeleteUsingTableDeleteMethod()
     {
         $tblRecursive = $this->_getTable('My_ZendDbTable_TableCascadeRecursive');
@@ -1815,9 +1794,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertIsString(serialize($table));
     }
 
-    /**
-     * @group ZF-1343
-     */
+    #[Group('ZF-1343')]
     public function testTableFetchallCanHandleWhereWithParameritizationCharacters()
     {
         $product_name = $this->_db->quoteIdentifier('product_name');
@@ -1827,9 +1804,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         $this->assertCount(0, $rows);
     }
 
-    /**
-     * @group ZF-3486
-     */
+    #[Group('ZF-3486')]
     public function testTableConcreteInstantiation()
     {
         Zend_Db_Table::setDefaultAdapter($this->_db);
@@ -1906,9 +1881,7 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         return $cacheFrontend;
     }
 
-    /**
-     * @group ZF-5674
-     */
+    #[Group('ZF-5674')]
     public function testTableAndIdentityWithVeryLongName()
     {
         Zend_Db_Table::setDefaultAdapter($this->_db);
@@ -1931,11 +1904,8 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
         return array('stuff' => 'information');
     }
 
-    /**
-     * @group ZF-7042
-     * @group ZF-10778
-     * @doesNotPerformAssertions
-     */
+    #[Group('ZF-7042')]
+    #[Group('ZF-10778')]
     public function testCacheIdGeneratedToMetadata()
     {
         Zend_Db_Table::setDefaultAdapter($this->_db);
@@ -1948,10 +1918,10 @@ abstract class Zend_Db_Table_TestCommon extends Zend_Db_Table_TestSetup
 
         $metadata     = array('id' => array('PRIMARY' => true));
         $cacheBackend = $this->getMockBuilder('Zend_Cache_Backend_BlackHole')->getMock();
-        $cacheBackend->expects($this->any())
+        $cacheBackend->expects($this->atLeastOnce())
                      ->method('load')
                      ->with($this->equalTo($cacheId))
-                     ->will($this->returnValue($metadata));
+                     ->willReturn($metadata);
 
         $cache = Zend_Cache::factory('Core', $cacheBackend, array('automatic_serialization' => false));
         Zend_Db_Table_Abstract::setDefaultMetadataCache($cache);

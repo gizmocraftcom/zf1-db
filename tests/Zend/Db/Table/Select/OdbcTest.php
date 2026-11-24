@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,10 +28,10 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Table
- * @group      Zend_Db_Table_Select
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Table')]
+#[Group('Zend_Db_Table_Select')]
 class Zend_Db_Table_Select_OdbcTest extends Zend_Db_Table_Select_TestCommon
 {
     public function getDriver()

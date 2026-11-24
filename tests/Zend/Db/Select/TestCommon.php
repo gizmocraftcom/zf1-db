@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -81,8 +82,8 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
 
     /**
      * ZF-2017: Test bind use of the Zend_Db_Select class.
-     * @group ZF-2017
      */
+    #[Group('ZF-2017')]
     public function testSelectQueryWithBinds()
     {
         $product_id = $this->_db->quoteIdentifier('product_id');
@@ -1459,9 +1460,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals(3, $result[0]['product_id']);
     }
 
-    /**
-     * @group ZF-4246
-     */
+    #[Group('ZF-4246')]
     protected function _checkExtraField($result)
     {
         // Check that extra field ZEND_DB_ROWNUM isn't present
@@ -1482,9 +1481,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         return $select;
     }
 
-    /**
-     * @group ZF-4246
-     */
+    #[Group('ZF-4246')]
     public function testSelectLimit()
     {
         $select = $this->_selectLimit();
@@ -1495,10 +1492,8 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $this->_checkExtraField($result[0]);
     }
 
-    /**
-     * @group ZF-5263
-     * @group ZF-4246
-     */
+    #[Group('ZF-5263')]
+    #[Group('ZF-4246')]
     public function testSelectLimitFetchCol()
     {
         $product_id = $this->_db->quoteIdentifier('product_id');
@@ -1523,9 +1518,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         return $select;
     }
 
-    /**
-     * @group ZF-4246
-     */
+    #[Group('ZF-4246')]
     public function testSelectLimitNone()
     {
         $select = $this->_selectLimitNone();
@@ -1544,9 +1537,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         return $select;
     }
 
-    /**
-     * @group ZF-4246
-     */
+    #[Group('ZF-4246')]
     public function testSelectLimitOffset()
     {
         $select = $this->_selectLimitOffset();
@@ -1569,9 +1560,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         return $select;
     }
 
-    /**
-     * @group ZF-4246
-     */
+    #[Group('ZF-4246')]
     public function testSelectLimitPageOne()
     {
         $select = $this->_selectLimitPageOne();
@@ -1591,9 +1580,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         return $select;
     }
 
-    /**
-     * @group ZF-4246
-     */
+    #[Group('ZF-4246')]
     public function testSelectLimitPageTwo()
     {
         $select = $this->_selectLimitPageTwo();
@@ -1655,27 +1642,21 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals(1, $result[0]['id']);
     }
 
-    /**
-     * @group ZF-4772
-     */
+    #[Group('ZF-4772')]
     public function testSelectUnionNoArrayThrowsException()
     {
         $this->expectException(Zend_Db_Select_Exception::class);
         $this->_db->select()->union('string');
     }
 
-    /**
-     * @group ZF-4772
-     */
+    #[Group('ZF-4772')]
     public function testSelectUnionInvalidUnionTypeThrowsException()
     {
         $this->expectException(Zend_Db_Select_Exception::class);
         $this->_db->select()->union(array(), 'foo');
     }
 
-    /**
-     * @group ZF-6653
-     */
+    #[Group('ZF-6653')]
     public function testSelectIsTheSameWhenCallingFromAndJoinInDifferentOrders()
     {
         $selectFromThenJoin = $this->_db->select();
@@ -1691,9 +1672,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals($sqlSelectFromThenJoin, $sqlSelectJoinThenFrom);
     }
 
-    /**
-     * @group ZF-6653
-     */
+    #[Group('ZF-6653')]
     public function testSelectIsTheSameWhenCallingMultipleFromsAfterJoin()
     {
         $selectFromThenJoin = $this->_db->select();
@@ -1711,9 +1690,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals($sqlSelectFromThenJoin, $sqlSelectJoinThenFrom);
     }
 
-    /**
-     * @group ZF-6653
-     */
+    #[Group('ZF-6653')]
     public function testSelectWithMultipleFromsAfterAJoinWillProperlyOrderColumns()
     {
         $select = $this->_selectWithMultipleFromsAfterAJoinWillProperlyOrderColumns();
@@ -1744,9 +1721,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $this->assertIsString($serialize);
     }
 
-    /**
-     * @group ZF-3792
-     */
+    #[Group('ZF-3792')]
     public function testJoinUsingActuallyGeneratesAnInnerJoinOnForCompatibilityReasons()
     {
         $table_A = $this->_db->quoteTableAs('A');
@@ -1757,9 +1732,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $this->assertStringContainsString("JOIN {$table_B} ON {$table_B}.{$colname} = {$table_A}.{$colname}", $s->assemble());
     }
 
-    /**
-     * @group ZF-5953
-     */
+    #[Group('ZF-5953')]
     public function testJoinUsingAllowsSpecifyingMultipleColumnsViaAnArray()
     {
         $table_A = $this->_db->quoteTableAs('A');
@@ -1775,9 +1748,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         );
     }
 
-    /**
-     * @group ZF-3309
-     */
+    #[Group('ZF-3309')]
     public function testJoinUsingUsesTableNameOfTableBeingJoinedWhenAliasNotDefined()
     {
         $table1  = $this->_db->quoteTableAs('table1');
@@ -1789,9 +1760,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $this->assertMatchesRegularExpression("/ON {$table2}.{$colname}/s", $select->assemble());
     }
 
-    /**
-     * @group ZF-3309
-     */
+    #[Group('ZF-3309')]
     public function testJoinUsingUsesAliasOfTableBeingJoinedWhenAliasIsDefined()
     {
         $table1       = $this->_db->quoteTableAs('table1');
@@ -1814,9 +1783,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals('SELECT `p`.* FROM `products` AS `p` ORDER BY `name;select;MD5(1)` ASC', $select->assemble());
     }
 
-    /**
-     * @group ZF-378
-     */
+    #[Group('ZF-378')]
     public function testOrderOfSingleFieldWithDirection()
     {
         $select = $this->_db->select();
@@ -1831,9 +1798,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         );
     }
 
-    /**
-     * @group ZF-378
-     */
+    #[Group('ZF-378')]
     public function testOrderOfMultiFieldWithDirection()
     {
         $select = $this->_db->select();
@@ -1848,9 +1813,7 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         );
     }
 
-    /**
-     * @group ZF-378
-     */
+    #[Group('ZF-378')]
     public function testOrderOfMultiFieldButOnlyOneWithDirection()
     {
         $select = $this->_db->select();
@@ -1865,10 +1828,8 @@ abstract class Zend_Db_Select_TestCommon extends Zend_Db_TestSetup
         );
     }
 
-    /**
-     * @group ZF-378
-     * @group ZF-381
-     */
+    #[Group('ZF-378')]
+    #[Group('ZF-381')]
     public function testOrderOfConditionalFieldWithDirection()
     {
         $select = $this->_db->select();

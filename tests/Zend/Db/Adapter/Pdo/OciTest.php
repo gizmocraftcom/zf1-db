@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Adapter')]
 class Zend_Db_Adapter_Pdo_OciTest extends Zend_Db_Adapter_Pdo_TestCommon
 {
     protected $_numericDataTypes = array(
@@ -176,9 +177,7 @@ class Zend_Db_Adapter_Pdo_OciTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals('"foo" "bar"', $value);
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchAll()
     {
         $documents   = $this->_db->quoteIdentifier('zfdocuments');
@@ -190,9 +189,7 @@ class Zend_Db_Adapter_Pdo_OciTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals($expected, stream_get_contents($value[0]['doc_clob']));
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchRow()
     {
         $documents   = $this->_db->quoteIdentifier('zfdocuments');
@@ -204,9 +201,7 @@ class Zend_Db_Adapter_Pdo_OciTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals($expected, stream_get_contents($value['doc_clob']));
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchAssoc()
     {
         $documents   = $this->_db->quoteIdentifier('zfdocuments');
@@ -218,9 +213,7 @@ class Zend_Db_Adapter_Pdo_OciTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals($expected, stream_get_contents($value[1]['doc_clob']));
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchCol()
     {
         $documents     = $this->_db->quoteIdentifier('zfdocuments');
@@ -233,9 +226,7 @@ class Zend_Db_Adapter_Pdo_OciTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals($expected, stream_get_contents($value[0]));
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchOne()
     {
         $documents     = $this->_db->quoteIdentifier('zfdocuments');
@@ -248,9 +239,7 @@ class Zend_Db_Adapter_Pdo_OciTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals($expected, stream_get_contents($value));
     }
 
-    /**
-     * @group ZF-8399
-     */
+    #[Group('ZF-8399')]
     public function testLongQueryWithTextField()
     {
         $this->markTestSkipped($this->getDriver() . ' does not have TEXT field type');

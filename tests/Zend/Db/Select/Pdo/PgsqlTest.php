@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Select
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Select')]
 class Zend_Db_Select_Pdo_PgsqlTest extends Zend_Db_Select_TestCommon
 {
     public function getDriver()
@@ -132,9 +133,7 @@ class Zend_Db_Select_Pdo_PgsqlTest extends Zend_Db_Select_TestCommon
         $this->assertEquals('SELECT "p".* FROM "products" AS "p" ORDER BY "name;select;MD5(1)" ASC', $select->assemble());
     }
 
-    /**
-     * @group ZF-378
-     */
+    #[Group('ZF-378')]
     public function testOrderOfSingleFieldWithDirection()
     {
         $select = $this->_db->select();
@@ -149,9 +148,7 @@ class Zend_Db_Select_Pdo_PgsqlTest extends Zend_Db_Select_TestCommon
         );
     }
 
-    /**
-     * @group ZF-378
-     */
+    #[Group('ZF-378')]
     public function testOrderOfMultiFieldWithDirection()
     {
         $select = $this->_db->select();
@@ -166,9 +163,7 @@ class Zend_Db_Select_Pdo_PgsqlTest extends Zend_Db_Select_TestCommon
         );
     }
 
-    /**
-     * @group ZF-378
-     */
+    #[Group('ZF-378')]
     public function testOrderOfMultiFieldButOnlyOneWithDirection()
     {
         $select = $this->_db->select();
@@ -183,10 +178,8 @@ class Zend_Db_Select_Pdo_PgsqlTest extends Zend_Db_Select_TestCommon
         );
     }
 
-    /**
-     * @group ZF-378
-     * @group ZF-381
-     */
+    #[Group('ZF-378')]
+    #[Group('ZF-381')]
     public function testOrderOfConditionalFieldWithDirection()
     {
         $select = $this->_db->select();

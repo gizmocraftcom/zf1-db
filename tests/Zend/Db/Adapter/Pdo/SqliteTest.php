@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Adapter')]
 class Zend_Db_Adapter_Pdo_SqliteTest extends Zend_Db_Adapter_Pdo_TestCommon
 {
     protected $_numericDataTypes = array(
@@ -181,9 +182,7 @@ class Zend_Db_Adapter_Pdo_SqliteTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->markTestSkipped($this->getDriver() . ' does not support transactions or concurrency');
     }
 
-    /**
-     * @group ZF-2293
-     */
+    #[Group('ZF-2293')]
     public function testAdapterSupportsLengthInTableMetadataForVarcharFields()
     {
         $metadata = $this->_db->describeTable('zfbugs');

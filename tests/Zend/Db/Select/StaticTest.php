@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +29,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Select
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Select')]
 class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
 {
     /**
@@ -503,8 +505,8 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
     /**
      * Test if the quotation type could be passed
      *
-     * @group ZF-10000
      */
+    #[Group('ZF-10000')]
     public function testSelectHavingQuoteBySpecificType()
     {
         $select = $this->_select()
@@ -518,8 +520,8 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
     /**
      * Test if the quotation is done for int
      *
-     * @group ZF-10000
      */
+    #[Group('ZF-10000')]
     public function testSelectHavingQuoteAsIntAutomatically()
     {
         $select = $this->_select()
@@ -533,8 +535,8 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
     /**
      * Test if the quotation is done for string
      *
-     * @group ZF-10000
      */
+    #[Group('ZF-10000')]
     public function testSelectHavingQuoteAsStringAutomatically()
     {
         $select = $this->_select()
@@ -548,8 +550,8 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
     /**
      * Test if the quotation type could be passed
      *
-     * @group ZF-10000
      */
+    #[Group('ZF-10000')]
     public function testSelectOrHavingQuoteBySpecificType()
     {
         $select = $this->_select()
@@ -564,8 +566,8 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
     /**
      * Test if the quotation is done for int
      *
-     * @group ZF-10000
      */
+    #[Group('ZF-10000')]
     public function testSelectOrHavingQuoteAsIntAutomatically()
     {
         $select = $this->_select()
@@ -580,8 +582,8 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
     /**
      * Test if the quotation is done for string
      *
-     * @group ZF-10000
      */
+    #[Group('ZF-10000')]
     public function testSelectOrHavingQuoteAsStringAutomatically()
     {
         $select = $this->_select()
@@ -593,9 +595,7 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
         $this->assertEquals('SELECT "zfproducts".*, COUNT(*) AS "count" FROM "zfproducts" GROUP BY "bug_id" HAVING (COUNT(*) > \'1\') OR (COUNT(*) = \'2\')', $select->__toString());
     }
 
-    /**
-     * @group ZF-10589
-     */
+    #[Group('ZF-10589')]
     public function testHavingZero()
     {
         $select = $this->_select()
@@ -705,9 +705,9 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
 
     /**
      * Not applicable in static test
-     * @group ZF-5263
-     * @doesNotPerformAssertions
      */
+    #[Group('ZF-5263')]
+    #[DoesNotPerformAssertions]
     public function testSelectLimitFetchCol()
     {
     }
@@ -785,9 +785,7 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
         $this->assertEquals('SELECT "zfproducts".* FROM "zfproducts" ORDER BY 2 DESC, 1 DESC', $sql);
     }
 
-    /**
-     * @group ZF-7491
-     */
+    #[Group('ZF-7491')]
     public function testPhp53Assembly()
     {
         $select = $this->_db->select();
@@ -798,9 +796,7 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
         $this->assertEquals($target, $select->assemble());
     }
 
-    /**
-     * @group ZF-7223
-     */
+    #[Group('ZF-7223')]
     public function testMaxIntegerValueWithLimit()
     {
         $select = $this->_db->select();
@@ -931,9 +927,7 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
         $this->assertEquals($expected, $select->assemble());
     }
 
-    /**
-     * @group ZF-378
-     */
+    #[Group('ZF-378')]
     public function testOrderOfSingleFieldWithDirection()
     {
         $select = $this->_db->select();
@@ -948,9 +942,7 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
         );
     }
 
-    /**
-     * @group ZF-378
-     */
+    #[Group('ZF-378')]
     public function testOrderOfMultiFieldWithDirection()
     {
         $select = $this->_db->select();
@@ -965,9 +957,7 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
         );
     }
 
-    /**
-     * @group ZF-378
-     */
+    #[Group('ZF-378')]
     public function testOrderOfMultiFieldButOnlyOneWithDirection()
     {
         $select = $this->_db->select();
@@ -982,10 +972,8 @@ class Zend_Db_Select_StaticTest extends Zend_Db_Select_TestCommon
         );
     }
 
-    /**
-     * @group ZF-378
-     * @group ZF-381
-     */
+    #[Group('ZF-378')]
+    #[Group('ZF-381')]
     public function testOrderOfConditionalFieldWithDirection()
     {
         $select = $this->_db->select();

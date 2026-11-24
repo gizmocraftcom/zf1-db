@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -161,8 +162,8 @@ class Zend_Db_Adapter_SqlsrvTest extends Zend_Db_Adapter_TestCommon
 
     /**
      * test that describeTable() returns empty array on not existing table
-     * @group ZF-9079
      */
+    #[Group('ZF-9079')]
     public function testAdapterDescribeTableNotExistingTable()
     {
         $desc = $this->_db->describeTable('not_existing_table');
@@ -275,9 +276,7 @@ class Zend_Db_Adapter_SqlsrvTest extends Zend_Db_Adapter_TestCommon
         $this->assertEquals(5, $value);
     }
 
-    /**
-     * @group ZF-1541
-     */
+    #[Group('ZF-1541')]
     public function testCharacterSetUtf8()
     {
         // Create a new adapter
@@ -441,9 +440,9 @@ class Zend_Db_Adapter_SqlsrvTest extends Zend_Db_Adapter_TestCommon
     }
 
     /**
-     * @group ZF-9252
      * @see zf-trunk/tests/Zend/Db/Adapter/Zend_Db_Adapter_TestCommon#testAdapterLimit()
      */
+    #[Group('ZF-9252')]
     public function testAdapterLimit()
     {
         parent::testAdapterLimit();
@@ -468,9 +467,9 @@ class Zend_Db_Adapter_SqlsrvTest extends Zend_Db_Adapter_TestCommon
     }
 
     /**
-     * @group ZF-9252
      * @see zf-trunk/tests/Zend/Db/Adapter/Zend_Db_Adapter_TestCommon#testAdapterLimitOffset()
      */
+    #[Group('ZF-9252')]
     public function testAdapterLimitOffset()
     {
         parent::testAdapterLimitOffset();
@@ -494,9 +493,7 @@ class Zend_Db_Adapter_SqlsrvTest extends Zend_Db_Adapter_TestCommon
         );
     }
 
-    /**
-     * @group ZF-8148
-     */
+    #[Group('ZF-8148')]
     public function testAdapterLimitOffsetWithOffsetExceedingRowCount()
     {
         $products   = $this->_db->quoteIdentifier('zfproducts');
@@ -513,9 +510,7 @@ class Zend_Db_Adapter_SqlsrvTest extends Zend_Db_Adapter_TestCommon
         );
     }
 
-    /**
-     * @group ZF-8148
-     */
+    #[Group('ZF-8148')]
     public function testAdapterLimitWithoutOrder()
     {
         $products   = $this->_db->quoteIdentifier('zfproducts');
@@ -537,9 +532,7 @@ class Zend_Db_Adapter_SqlsrvTest extends Zend_Db_Adapter_TestCommon
         );
     }
 
-    /**
-     * @group ZF-8148
-     */
+    #[Group('ZF-8148')]
     public function testAdapterLimitOffsetWithoutOrder()
     {
         $products   = $this->_db->quoteIdentifier('zfproducts');
@@ -561,9 +554,7 @@ class Zend_Db_Adapter_SqlsrvTest extends Zend_Db_Adapter_TestCommon
         );
     }
 
-    /**
-     * @group ZF-8901
-     */
+    #[Group('ZF-8901')]
     public function testAdapterLimitOffsetWithMultipleOrderColumns()
     {
         $products     = $this->_db->quoteIdentifier('zfproducts');

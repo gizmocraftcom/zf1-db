@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Profiler
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Profiler')]
 class Zend_Db_Profiler_MysqliTest extends Zend_Db_Profiler_TestCommon
 {
     public function getDriver()

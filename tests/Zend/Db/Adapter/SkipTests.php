@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,8 +28,6 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
 abstract class Zend_Db_Adapter_Skip_CommonTest extends PHPUnit\Framework\TestCase
 {
@@ -52,8 +51,8 @@ abstract class Zend_Db_Adapter_Skip_CommonTest extends PHPUnit\Framework\TestCas
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_Db2Test extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()
@@ -68,8 +67,8 @@ class Zend_Db_Adapter_Skip_Db2Test extends Zend_Db_Adapter_Skip_CommonTest
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_OracleTest extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()
@@ -84,8 +83,8 @@ class Zend_Db_Adapter_Skip_OracleTest extends Zend_Db_Adapter_Skip_CommonTest
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_FirebirdTest extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()
@@ -100,8 +99,8 @@ class Zend_Db_Adapter_Skip_FirebirdTest extends Zend_Db_Adapter_Skip_CommonTest
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_MysqliTest extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()
@@ -116,8 +115,8 @@ class Zend_Db_Adapter_Skip_MysqliTest extends Zend_Db_Adapter_Skip_CommonTest
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_Pdo_MssqlTest extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()
@@ -132,8 +131,8 @@ class Zend_Db_Adapter_Skip_Pdo_MssqlTest extends Zend_Db_Adapter_Skip_CommonTest
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_Pdo_MysqlTest extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()
@@ -148,8 +147,8 @@ class Zend_Db_Adapter_Skip_Pdo_MysqlTest extends Zend_Db_Adapter_Skip_CommonTest
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_Pdo_OciTest extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()
@@ -164,8 +163,8 @@ class Zend_Db_Adapter_Skip_Pdo_OciTest extends Zend_Db_Adapter_Skip_CommonTest
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_Pdo_FirebirdTest extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()
@@ -180,8 +179,8 @@ class Zend_Db_Adapter_Skip_Pdo_FirebirdTest extends Zend_Db_Adapter_Skip_CommonT
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_Pdo_PgsqlTest extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()
@@ -196,8 +195,8 @@ class Zend_Db_Adapter_Skip_Pdo_PgsqlTest extends Zend_Db_Adapter_Skip_CommonTest
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
  */
+#[Group('Zend_Db')]
 class Zend_Db_Adapter_Skip_Pdo_SqliteTest extends Zend_Db_Adapter_Skip_CommonTest
 {
     public function getDriver()

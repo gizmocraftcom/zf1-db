@@ -20,6 +20,8 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\DoesNotPerformAssertions;
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -33,8 +35,8 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
     /**
      * Test AUTO_QUOTE_IDENTIFIERS option
      * Case: Zend_Db::AUTO_QUOTE_IDENTIFIERS = true
-     * @doesNotPerformAssertions
      */
+    #[DoesNotPerformAssertions]
     public function testAdapterZendConfig()
     {
         $params = new Zend_Config($this->_util->getParams());
@@ -46,8 +48,8 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
     /**
      * Test empty adapterNamespace issue
      * Case: Zend_Db::AUTO_QUOTE_IDENTIFIERS = true
-     * @doesNotPerformAssertions
      */
+    #[DoesNotPerformAssertions]
     public function testAdapterZendConfigEmptyNamespace()
     {
         $params                     = $this->_util->getParams();
@@ -279,9 +281,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals(array(2, 3), $ids);
     }
 
-    /**
-     * @group ZF-1726
-     */
+    #[Group('ZF-1726')]
     public function testAdapterDeleteWhereArrayWithVariable()
     {
         $products     = $this->_db->quoteIdentifier('zfproducts');
@@ -423,9 +423,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals(1, $desc['product_id']['PRIMARY_POSITION']);
     }
 
-    /**
-     * @group ZF-2927
-     */
+    #[Group('ZF-2927')]
     public function testAdapterDescribeView()
     {
         $describe = $this->_db->describeTable('temp_view');
@@ -715,8 +713,8 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
     /**
      * Test the Adapter's limit() method.
      * Fetch 1 row.  Then fetch 1 row offset by 1 row.
-     * @group ZF-4246
      */
+    #[Group('ZF-4246')]
     public function testAdapterLimit()
     {
         $products   = $this->_db->quoteIdentifier('zfproducts');
@@ -748,9 +746,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertArrayNotHasKey('ZEND_DB_ROWNUM', $result[0]);
     }
 
-    /**
-     * @group ZF-4246
-     */
+    #[Group('ZF-4246')]
     public function testAdapterLimitOffset()
     {
         $products   = $this->_db->quoteIdentifier('zfproducts');
@@ -1895,9 +1891,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals('ARRAY', $value);
     }
 
-    /**
-     * @group ZF-1726
-     */
+    #[Group('ZF-1726')]
     public function testAdapterUpdateWhereArrayWithVariable()
     {
         $bugs       = $this->_db->quoteIdentifier('zfbugs');
@@ -1951,9 +1945,9 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
     }
 
     /**
-     * @group ZF-8597
      * Oracle is limited to 30 characters for an identifier
      */
+    #[Group('ZF-8597')]
     public function testAdapterUpdateWithLongColumnIdentifier()
     {
         // create test table using no identifier quoting
@@ -2041,9 +2035,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         }
     }
 
-    /**
-     * @group ZF-5099
-     */
+    #[Group('ZF-5099')]
     public function testAdapterGetServerVersion()
     {
         $version = $this->_db->getServerVersion();
@@ -2058,9 +2050,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertTrue($this->_db->isConnected());
     }
 
-    /**
-     * @group ZF-5050
-     */
+    #[Group('ZF-5050')]
     public function testAdapterCloseConnection()
     {
         $this->_db->closeConnection();
@@ -2070,9 +2060,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertFalse($this->_db->isConnected());
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchAll()
     {
         $documents   = $this->_db->quoteIdentifier('zfdocuments');
@@ -2084,9 +2072,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals($expected, $value[0]['doc_clob']);
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchRow()
     {
         $documents   = $this->_db->quoteIdentifier('zfdocuments');
@@ -2098,9 +2084,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals($expected, $value['doc_clob']);
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchAssoc()
     {
         $documents   = $this->_db->quoteIdentifier('zfdocuments');
@@ -2112,9 +2096,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals($expected, $value[1]['doc_clob']);
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchCol()
     {
         $documents     = $this->_db->quoteIdentifier('zfdocuments');
@@ -2127,9 +2109,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertEquals($expected, $value[0]);
     }
 
-    /**
-     * @group ZF-5146
-     */
+    #[Group('ZF-5146')]
     public function testAdapterReadClobFetchOne()
     {
         $documents     = $this->_db->quoteIdentifier('zfdocuments');
@@ -2175,9 +2155,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->assertTrue($db->isConnected());
     }
 
-    /**
-     * @group ZF-1541
-     */
+    #[Group('ZF-1541')]
     public function testCharacterSetUtf8()
     {
         // Create a new adapter
@@ -2224,18 +2202,14 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $util->dropTable($tableName);
     }
 
-    /**
-     * @group ZF-7737
-     */
+    #[Group('ZF-7737')]
     public function testQuoteIntoReplacesPlaceholderAtFirstCharacterWhenCountIsNotNull()
     {
         $quotedString = $this->_db->quoteInto('? = bar', 'foo', null, 1);
         $this->assertEquals("'foo' = bar", $quotedString);
     }
 
-    /**
-     * @group ZF-8399
-     */
+    #[Group('ZF-8399')]
     public function testLongQueryWithTextField()
     {
         // create test table using no identifier quoting
@@ -2276,9 +2250,7 @@ abstract class Zend_Db_Adapter_TestCommon extends Zend_Db_TestSetup
         $this->_util->dropTable($tableName);
     }
 
-    /**
-     * @group ZF-6620
-     */
+    #[Group('ZF-6620')]
     public function testAdapterOptionFetchMode()
     {
         $params = $this->_util->getParams();

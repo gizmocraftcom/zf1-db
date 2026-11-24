@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Select
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Select')]
 class Zend_Db_Select_MysqliTest extends Zend_Db_Select_TestCommon
 {
     public function getDriver()
@@ -40,8 +41,8 @@ class Zend_Db_Select_MysqliTest extends Zend_Db_Select_TestCommon
     /**
      * Mysqli does not support named binds
      * ZF-2017: Test bind use of the Zend_Db_Select class.
-     * @group ZF-2017
      */
+    #[Group('ZF-2017')]
     public function testSelectQueryWithBinds()
     {
         $this->expectException(\Zend_Db_Statement_Exception::class);

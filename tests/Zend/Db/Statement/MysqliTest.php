@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * Wrapper class for test protected function _stripQuoted
@@ -38,15 +39,13 @@ class Zend_Db_Statement_Mysqli_Test_Class extends Zend_Db_Statement_Mysqli
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Statement
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Statement')]
 class Zend_Db_Statement_MysqliTest extends Zend_Db_Statement_TestCommon
 {
     protected $_Zend_Db_Statement_Mysqli_Test_Class = null;
-    /**
-     * @group ZF-7911
-     */
+    #[Group('ZF-7911')]
     public function testStripQuoted()
     {
         $this->_Zend_Db_Statement_Mysqli_Test_Class = new Zend_Db_Statement_Mysqli_Test_Class($this->_db, 'SELECT 1');
@@ -228,8 +227,8 @@ INPUT;
     /**
      * Tests ZF-3216, that the statement object throws exceptions that
      * contain the numerica MySQL SQLSTATE error code
-     * @group ZF-3216
      */
+    #[Group('ZF-3216')]
     public function testStatementExceptionShouldContainErrorCode()
     {
         $sql = 'SELECT * FROM *';
@@ -241,9 +240,7 @@ INPUT;
         }
     }
 
-    /**
-     * @group ZF-7706
-     */
+    #[Group('ZF-7706')]
     public function testStatementCanReturnDriverStatement()
     {
         $statement = parent::testStatementCanReturnDriverStatement();
@@ -252,8 +249,8 @@ INPUT;
 
     /**
      * Tests that the statement returns FALSE when no records are found
-     * @group ZF-5675
      */
+    #[Group('ZF-5675')]
     public function testStatementReturnsFalseOnEmpty()
     {
         $products = $this->_db->quoteIdentifier('zfproducts');
@@ -266,8 +263,8 @@ INPUT;
     /**
      * Test to verify valid report of issue
      *
-     * @group ZF-8986
      */
+    #[Group('ZF-8986')]
     public function testNumberOfBoundParamsDoesNotMatchNumberOfTokens()
     {
         $this->_util->createTable('zf_objects', array(

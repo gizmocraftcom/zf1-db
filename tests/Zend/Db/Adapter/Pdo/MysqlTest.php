@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Adapter')]
 class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
 {
     protected $_numericDataTypes = array(
@@ -95,9 +96,9 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
     /**
      * Ensures that driver_options are properly passed along to PDO
      *
-     * @group ZF-285
      * @return void
      */
+    #[Group('ZF-285')]
     public function testAdapterDriverOptions()
     {
         $params = $this->_util->getParams();
@@ -236,9 +237,9 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
 
     /**
      * test that describeTable() returns correct types
-     * @group ZF-3624
      *
      */
+    #[Group('ZF-3624')]
     public function testAdapterDescribeTableAttributeColumnFloat()
     {
         $desc = $this->_db->describeTable('zfprice');
@@ -312,9 +313,7 @@ class Zend_Db_Adapter_Pdo_MysqlTest extends Zend_Db_Adapter_Pdo_TestCommon
         $this->assertEquals(1, $result[0]['product_id']);
     }
 
-    /**
-     * @group ZF-11304
-     */
+    #[Group('ZF-11304')]
     public function testAdapterIncludesCharsetInsideGeneratedPdoDsn()
     {
         $adapter = new ZendTest_Db_Adapter_Pdo_Mysql(array('dbname' => 'foo', 'charset' => 'XYZ', 'username' => 'bar', 'password' => 'foo'));

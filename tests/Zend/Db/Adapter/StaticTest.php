@@ -20,6 +20,7 @@
  * @version    $Id$
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Adapter
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Adapter')]
 class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
 {
     protected static $_isCaseSensitiveFileSystem = null;
@@ -252,9 +253,7 @@ class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
         $this->assertIsInt($mode);
     }
 
-    /**
-     * @group ZF-5099
-     */
+    #[Group('ZF-5099')]
     public function testDbGetServerVersion()
     {
         $db      = Zend_Db::factory('Static', array('dbname' => 'dummy'));
@@ -264,9 +263,7 @@ class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
         $this->assertTrue(version_compare($version, '99.0.0', '<'));
     }
 
-    /**
-     * @group ZF-5050
-     */
+    #[Group('ZF-5050')]
     public function testDbCloseConnection()
     {
         $db = Zend_Db::factory('Static', array('dbname' => 'dummy'));
@@ -276,9 +273,7 @@ class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
         $this->assertFalse($db->isConnected());
     }
 
-    /**
-     * @group ZF-5606
-     */
+    #[Group('ZF-5606')]
     public function testDbFactoryDoesNotNormalizeNamespace()
     {
         $newIncludePath = realpath(dirname(__FILE__) . '/_files/') . PATH_SEPARATOR . get_include_path();
@@ -297,9 +292,7 @@ class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
         set_include_path($oldIncludePath);
     }
 
-    /**
-     * @group ZF-5606
-     */
+    #[Group('ZF-5606')]
     public function testDbFactoryWillThrowExceptionWhenAssumingBadBehavior()
     {
         $newIncludePath = realpath(dirname(__FILE__) . '/_files/') . PATH_SEPARATOR . get_include_path();
@@ -327,9 +320,7 @@ class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
         set_include_path($oldIncludePath);
     }
 
-    /**
-     * @group ZF-7924
-     */
+    #[Group('ZF-7924')]
     public function testDbFactoryWillLoadCaseInsensitiveAdapterName()
     {
         $newIncludePath = realpath(dirname(__FILE__) . '/_files/') . PATH_SEPARATOR . get_include_path();
@@ -348,9 +339,7 @@ class Zend_Db_Adapter_StaticTest extends PHPUnit\Framework\TestCase
         set_include_path($oldIncludePath);
     }
 
-    /**
-     * @group ZF-6620
-     */
+    #[Group('ZF-6620')]
     public function testDbConstructorSetOptionFetchMode()
     {
         $db = new Zend_Db_Adapter_Static(array('dbname' => 'dummy'));

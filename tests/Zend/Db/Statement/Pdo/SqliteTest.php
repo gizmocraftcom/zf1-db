@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /**
  * @category   Zend
@@ -27,9 +28,9 @@
  * @subpackage UnitTests
  * @copyright  Copyright (c) 2005-2015 Zend Technologies USA Inc. (http://www.zend.com)
  * @license    http://framework.zend.com/license/new-bsd     New BSD License
- * @group      Zend_Db
- * @group      Zend_Db_Statement
  */
+#[Group('Zend_Db')]
+#[Group('Zend_Db_Statement')]
 class Zend_Db_Statement_Pdo_SqliteTest extends Zend_Db_Statement_Pdo_TestCommon
 {
     public function testStatementBindParamByName()
@@ -46,9 +47,7 @@ class Zend_Db_Statement_Pdo_SqliteTest extends Zend_Db_Statement_Pdo_TestCommon
         'native_type', 'sqlite:decl_type', 'flags', 'name', 'len', 'precision', 'pdo_type'
     );
 
-    /**
-     * @group ZF-7706
-     */
+    #[Group('ZF-7706')]
     public function testStatementCanReturnDriverStatement()
     {
         $statement = parent::testStatementCanReturnDriverStatement();

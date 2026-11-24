@@ -20,6 +20,7 @@
  * @version    $Id $
  */
 
+use PHPUnit\Framework\Attributes\Group;
 
 /*
  * @category   Zend
@@ -69,9 +70,7 @@ abstract class Zend_Db_Statement_Pdo_TestCommon extends Zend_Db_Statement_TestCo
         $stmt->closeCursor();
     }
 
-    /**
-     * @group ZF-4486
-     */
+    #[Group('ZF-4486')]
     public function testStatementIsIterableThroughtForeach()
     {
         $select = $this->_db->select()->from('zfproducts');
@@ -99,10 +98,7 @@ abstract class Zend_Db_Statement_Pdo_TestCommon extends Zend_Db_Statement_TestCo
         }
     }
 
-    /**
-     *
-     * @group ZF-5868
-     */
+    #[Group('ZF-5868')]
     public function testStatementWillPersistBindParamsInQueryProfilerAfterExecute()
     {
         $this->_db->getProfiler()->setEnabled(true);
