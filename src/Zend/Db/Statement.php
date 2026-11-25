@@ -176,8 +176,11 @@ abstract class Zend_Db_Statement implements Zend_Db_Statement_Interface
         // remove 'foo\'bar'
         if (!empty($q)) {
             $escapeChar = preg_quote($escapeChar);
-            // this segfaults only after 65,000 characters instead of 9,000
-            $sql = preg_replace("/$q([^$q{$escapeChar}]*|($qe)*)*$q/s", '', $sql);
+            // ZEUS patch: the original pattern cannot step over backslash escapes other than \' (e.g. \"
+            // produced by quote() for fulltext queries) and then backtracks until preg_replace() returns null.
+            // Match escaped characters (\x) and doubled quotes explicitly, without nested quantifiers.
+            $qq  = preg_quote($q, '/');
+            $sql = preg_replace("/{$qq}(?:[^{$qq}\\\\]++|\\\\.|{$qq}{$qq})*+{$qq}/s", '', $sql);
         }
 
         // get a version of the SQL statement with all quoted

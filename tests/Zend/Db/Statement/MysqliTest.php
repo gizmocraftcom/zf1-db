@@ -147,6 +147,36 @@ INPUT;
         }
     }
 
+    /**
+     * quote() escapes " as \" for MySQL. The old pattern could not step over backslash escapes other
+     * than \' and ran into the PCRE backtrack limit, so preg_replace() returned null.
+     */
+    public function testStripQuotedWithEscapedDoubleQuotes()
+    {
+        $stmt = new Zend_Db_Statement_Mysqli_Test_Class($this->_db, 'SELECT 1');
+
+        $value  = str_repeat('word ', 200) . '"4-8" "x" +y';
+        $quoted = $this->_db->quote($value);
+        $this->assertStringContainsString('\\"4-8\\"', $quoted);
+
+        $sql    = 'SELECT * FROM t WHERE MATCH(c) AGAINST (' . $quoted . ' IN BOOLEAN MODE) AND d = ?';
+        $actual = $stmt->stripQuoted($sql);
+
+        $this->assertSame('SELECT * FROM t WHERE MATCH(c) AGAINST ( IN BOOLEAN MODE) AND d = ?', $actual);
+        $this->assertSame(PREG_NO_ERROR, preg_last_error());
+
+        // a backslash before the closing quote must not swallow the following text
+        $this->assertSame(
+            'SELECT  AS a, ? AS b',
+            $stmt->stripQuoted("SELECT 'C:\\\\' AS a, ? AS b")
+        );
+        // an escaped backslash followed by an escaped quote
+        $this->assertSame(
+            'SELECT  AS a, ? AS b',
+            $stmt->stripQuoted("SELECT 'x\\\\\\'y' AS a, ? AS b")
+        );
+    }
+
     public function testStatementRowCount()
     {
         $products   = $this->_db->quoteIdentifier('zfproducts');

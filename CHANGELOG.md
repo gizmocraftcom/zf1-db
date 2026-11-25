@@ -1,5 +1,12 @@
 # Changelog
 
+## Unreleased
+
+### Fixes
+
+- `Zend_Db_Statement::_stripQuoted()` no longer runs into catastrophic backtracking on escaped characters. The old pattern for single-quoted strings could not step over backslash escapes other than `\'`. `Zend_Db_Adapter_Mysqli::quote()` escapes `"` as `\"`, so a quoted value such as a fulltext query containing `"4-8"` made `preg_replace()` hit the PCRE backtrack limit and return `null`, which then raised "Passing null to parameter #3 ($subject)". The replacement pattern matches any backslash-escaped character and doubled quotes explicitly, with possessive quantifiers.
+- Behavior note: the new pattern always treats a backslash as an escape character inside single-quoted strings, as MySQL does. Adapters whose quoting does not use backslash escapes (for example Oracle, Db2 and Sqlsrv, which only double quotes) now parse a literal such as `'C:\'` differently when it appears in SQL text passed to `prepare()`. Those adapters could not be tested locally.
+
 ## 2.0.0
 
 Fork of `diablomedia/zendframework1-db`, published as `gizmocraft/zendframework1-db`.
