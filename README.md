@@ -1,7 +1,6 @@
 # Zend Framework 1 - Db
 
 [![Build](https://github.com/gizmocraftcom/zf1-db/workflows/Build/badge.svg?event=push)](https://github.com/gizmocraftcom/zf1-db/actions?query=workflow%3ABuild+event%3Apush)
-[![codecov](https://codecov.io/gh/gizmocraftcom/zf1-db/branch/master/graph/badge.svg)](https://codecov.io/gh/gizmocraftcom/zf1-db)
 [![Latest Stable Version](https://poser.pugx.org/gizmocraft/zendframework1-db/v/stable)](https://packagist.org/packages/gizmocraft/zendframework1-db)
 [![Total Downloads](https://poser.pugx.org/gizmocraft/zendframework1-db/downloads)](https://packagist.org/packages/gizmocraft/zendframework1-db)
 [![License](https://poser.pugx.org/gizmocraft/zendframework1-db/license)](https://packagist.org/packages/gizmocraft/zendframework1-db)
